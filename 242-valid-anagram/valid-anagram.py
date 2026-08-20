@@ -1,13 +1,16 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-
+        if len(s)!=len(t):
+            return False
         freq={}
-        freq1={}
         for ch in s:
             freq[ch]=freq.get(ch,0)+1
         for hc in t:
-            freq1[hc]=freq1.get(hc,0)+1
-        if freq!=freq1:
-            return False
+            if hc in freq:
+                freq[hc]-=1
+                if freq[hc]<0:
+                    return False
+            else:
+                return False
         return True
-        
+            
